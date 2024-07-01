@@ -16,7 +16,7 @@ jobs:
 
       - name: Run hello World
         run: |
-          echo "${{ secrets.DJANGO_SECRET_KEY }}"
+          echo "DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}"
       - name: Setup Python3.10
         uses: actions/setup-python@v2
         with:
