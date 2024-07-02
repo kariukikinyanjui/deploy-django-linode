@@ -6,5 +6,5 @@ on:
     branches: [main]
 
 jobs:
-test django:
+test_django:
   uses: ./.github/workflows/hello-world.yaml
