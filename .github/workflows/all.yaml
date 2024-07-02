@@ -7,4 +7,4 @@ on:
 
 jobs:
 test django:
-  uses: ./.github/workflows/hello_world.yaml
+  uses: ./.github/workflows/hello-world.yaml
