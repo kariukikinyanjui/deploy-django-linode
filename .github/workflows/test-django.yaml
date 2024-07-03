@@ -1,4 +1,4 @@
-name: MySQL for Django Tests
+name: 1 - Django Tests MySQL for Django Tests
 
 # Controls when the workflow will run
 on:
@@ -26,7 +26,7 @@ jobs:
       MYSQL_TCP_PORT: 3306
       MYSQL_HOST: 127.0.0.1
       GITHUB_ACTIONS: true
-      DJANGO_SECRET_KEY: test-key-not-good
+      DJANGO_SECRET_KEY: "${{ secrets.DJANGO_SECRET_KEY }}"
       DATABASE_BACKEND: mysql
     services:
       mysql:
@@ -41,9 +41,9 @@ jobs:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s 
     # If you want to test multiple python version(s)
-    strategy:
-      matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+    # strategy:
+    #   matrix:
+    #     python-version: ["3.8", "3.9", "3.10"]
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -55,7 +55,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install requirements
         run: |
-          pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
       - name: Run Tests
         # Step specific environment variables
         env:
